@@ -23,7 +23,9 @@ runs:
         pwd
         echo $(ls -R)
         echo ${{ inputs.chart-dirs }}
-        result=$(python3 ./chartvalid.py -chart-dirs=${{ inputs.chart-dirs }})
+        echo $GITHUB_ACTION_PATH
+        echo $(ls -R $GITHUB_ACTION_PATH)
+        result=$(python3 $GITHUB_ACTION_PATH/chartvalid.py -chart-dirs=${{ inputs.chart-dirs }})
         echo $result
         echo test-valid-result=$result >> $GITHUB_OUTPUT
       shell: bash
